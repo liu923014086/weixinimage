@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+
+</title>
+ <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="./style/weui.css"/>
+  <link rel="stylesheet" href="./style/weui2.css"/>
+  <link rel="stylesheet" href="./style/weui3.css"/>
+    
+<style type="text/css">
+      .weui_cell{
+         padding:0px 0px !important;
+      }
+  </style>
+
+
+</head>
+
+<body ontouchstart class="page-bg">
+<div class="page-hd">
+        <h1 class="page-hd-title">
+            懒加载图片
+        </h1>
+        <p class="page-hd-desc">需要加载lazyimg.js</p>
+    </div>
+    <div class="weui_cells">
+       <div class="weui_cell">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <!-- <p class='weui-updown'>
+                                <img src="http://t2.hddhhn.com/uploads/tu/201709/9999/6bd34adf66.jpg"  data-src="http://t2.hddhhn.com/uploads/tu/201709/9999/6bd34adf66.jpg" height="700" />
+                                       </p>
+                                       <p class='weui-updown'>
+                                <img src="http://t2.hddhhn.com/uploads/tu/201612/512/ji5gyqzyik1.jpg"  data-src="http://t2.hddhhn.com/uploads/tu/201612/512/ji5gyqzyik1.jpg"  height="700" />
+                                       </p>
+                    
+                    
+                                       <p class='weui-updown'>
+                                <img src="http://t2.hddhhn.com/uploads/tu/201608/280/1.jpg"  data-src="http://t2.hddhhn.com/uploads/tu/201608/280/1.jpg"  height="700" />
+                                       </p>
+                    
+                                       <p class='weui-updown'>
+                                <img src=" http://t2.hddhhn.com/uploads/tu/201608/260/1.jpg"  data-src=" http://t2.hddhhn.com/uploads/tu/201608/260/1.jpg"  height="700" />
+                                       </p> -->
+
+                  
+
+
+
+                </div>
+            </div>
+        </div>
+
+       
+</body>
+
+
+
+
+  <script src="./zepto.min.js"></script><script src="./lazyimg.js"></script>
+      <script>
+  $(function(){
+generateImage({
+    imageUrlArray:[
+        'http://t2.hddhhn.com/uploads/tu/201608/280/1.jpg',
+        'http://t2.hddhhn.com/uploads/tu/201608/260/1.jpg',
+        'http://t2.hddhhn.com/uploads/tu/201709/9999/6bd34adf66.jpg'
+
+    ],
+    size:800
+});
+
+  var lazyloadImg = new LazyloadImg({
+            el: '.weui-updown [data-src]', //匹配元素
+            top: 50, //元素在顶部伸出长度触发加载机制
+            right: 50, //元素在右边伸出长度触发加载机制
+            bottom: 50, //元素在底部伸出长度触发加载机制
+            left: 50, //元素在左边伸出长度触发加载机制
+            qriginal: false, // true，自动将图片剪切成默认图片的宽高；false显示图片真实宽高
+            load: function(el) {
+                el.style.cssText += '-webkit-animation: fadeIn 01s ease 0.2s 1 both;animation: fadeIn 1s ease 0.2s 1 both;';
+            },
+            error: function(el) {
+
+            }
+        });
+    });    
+//[url1,url2,url3],size
+  function generateImage(imageUrlJson){
+    alert();
+      var imageUrlArray = imageUrlJson.imageUrlArray;
+      var imageSize = imageUrlJson.size;
+      var imageStr = "";
+        for(var i=0;i<imageUrlArray.length;i++){
+
+          imageStr +='<p class="weui-updown"><img src=" '+imageUrlArray[i]+' "  data-src=" '+imageUrlArray[i]+' "  height='+imageSize+' /></p>';
+           
+        }
+
+         console.log(imageStr);
+
+        $(".weui_cell_primary").append(imageStr);
+        
+  }
+     
+      </script>
+</html>
